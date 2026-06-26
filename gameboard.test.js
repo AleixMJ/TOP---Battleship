@@ -32,6 +32,17 @@ describe("Gameboard Mechanics", () => {
         expect(() => {
             testGameboard.placeShip(1, 8, 8);
         }).toThrow("Space occupied by other Ship");
+    });
+    
+    test('Attack misses correctly', () => {
+        testGameboard.receiveAttack(1, 2,);
+        expect(testGameboard.grid[1][2]).toBe("miss");
+    }); 
+
+    test('Attack hits correctly', () => {
+        testGameboard.placeShip(1, 1, 2);
+        testGameboard.receiveAttack(1, 2,);
+        expect(testGameboard.grid[1][2]).toBe("hit");
     }); 
 
 });
