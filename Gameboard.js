@@ -11,6 +11,14 @@ class Gameboard {
 
             if(startY + ship.length > 10) throw Error("ship out of boundries")
 
+            let scanY = startY
+            for (let i = 0; i < ship.length; i++) {
+                if (this.grid[scanY][startX] !== null) {
+                    throw Error("Space occupied by other Ship");
+                }
+                scanY++;
+            }
+
             this.grid[startY][startX] = ship;
             let SquaresOccupied = 1;
             while (ship.length > SquaresOccupied ) {
@@ -20,6 +28,14 @@ class Gameboard {
             }
         } else {
             if(startX + ship.length > 10) throw Error("ship out of boundries")
+
+            let scanX = startX
+            for (let i = 0; i < ship.length; i++) {
+                if (this.grid[startY][scanX] !== null) {
+                    throw Error("Space occupied by other Ship");
+                }
+                scanX++;
+            }
 
             this.grid[startY][startX] = ship;
             let SquaresOccupied = 1;

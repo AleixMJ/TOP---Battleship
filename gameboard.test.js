@@ -21,4 +21,17 @@ describe("Gameboard Mechanics", () => {
         expect(testGameboard.grid[2][2]).toBeInstanceOf(Ship);
     }); 
 
+    test('Ship placed out of boundries', () => {
+        expect(() => {
+            testGameboard.placeShip(1, 11, 11);
+        }).toThrow("ship out of boundries");
+    }); 
+
+    test('Ship placed out of boundries', () => {
+        testGameboard.placeShip(1, 8, 8);
+        expect(() => {
+            testGameboard.placeShip(1, 8, 8);
+        }).toThrow("Space occupied by other Ship");
+    }); 
+
 });
