@@ -3,6 +3,7 @@ import Ship from './Ship.js'
 describe("Ship Mechanics", () => {
 
     let testShip;
+
     beforeEach(() => {
         testShip = new Ship(3);
     })
@@ -33,6 +34,17 @@ describe("Ship Mechanics", () => {
         testShip.hit();
         expect(testShip.hits).toBe(3);
         
+    });
+
+    test('Ship is not Sunk', () => {
+        expect(testShip.isSunk()).toBe(false);
+    });
+
+    test('Ship is Sunk', () => {
+        testShip.hit();
+        testShip.hit();
+        testShip.hit();
+        expect(testShip.isSunk()).toBe(true);
     });
 
 });

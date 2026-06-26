@@ -10,6 +10,14 @@ class Ship {
         }
         this.hits ++;
     }
+
+    isSunk() {
+        if (this.length === this.hits) {
+            return true;
+        }
+
+        return false;
+    }
 };
 
 export default Ship;
