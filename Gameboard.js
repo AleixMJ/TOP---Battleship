@@ -3,6 +3,7 @@ import Ship from "./Ship";
 class Gameboard {
     constructor() {
         this.grid = Array.from({ length: 10}, () => Array(10).fill(null));
+        this.ships = [];
     }
 
     placeShip(length,  startY, startX, vertical = true) {
@@ -20,6 +21,7 @@ class Gameboard {
             }
 
             this.grid[startY][startX] = ship;
+            this.ships.push(ship);
             let SquaresOccupied = 1;
             while (ship.length > SquaresOccupied ) {
                 startY++;
@@ -38,6 +40,7 @@ class Gameboard {
             }
 
             this.grid[startY][startX] = ship;
+            this.ships.push(ship);
             let SquaresOccupied = 1;
             while (ship.length > SquaresOccupied ) {
                 startX++;
@@ -50,6 +53,10 @@ class Gameboard {
         if (row > 10 || row < 1 || col > 10 || col < 1) {
             throw Error("Attack ouf of boundries");
         }
+    }
+
+    allShipsSunk() {
+        return this.ships.every(ship => ship.isSunk());
     }
 
 };

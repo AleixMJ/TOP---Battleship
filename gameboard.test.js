@@ -51,4 +51,16 @@ describe("Gameboard Mechanics", () => {
         }).toThrow("Attack ouf of boundries");
     });
 
+    test('All ships are sunk', () => {
+        testGameboard.placeShip(1, 1, 2);
+        testGameboard.receiveAttack(1, 2,);
+        expect(testGameboard.allShipsSunk()).toBe(true);
+    });
+
+    test('All ships are not sunk', () => {
+        testGameboard.placeShip(1, 1, 2);
+        testGameboard.placeShip(2, 4, 7);
+        testGameboard.receiveAttack(1, 1, 2,);
+        expect(testGameboard.allShipsSunk()).toBe(false);
+    });
 });
