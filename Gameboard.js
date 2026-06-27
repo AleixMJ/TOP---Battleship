@@ -46,6 +46,11 @@ class Gameboard {
             }
         }
     }
+    receiveAttack(row, col) {
+        if (row > 10 || row < 1 || col > 10 || col < 1) {
+            throw Error("Attack ouf of boundries");
+        }
+    }
 
 };
 

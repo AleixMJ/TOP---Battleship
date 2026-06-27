@@ -43,6 +43,12 @@ describe("Gameboard Mechanics", () => {
         testGameboard.placeShip(1, 1, 2);
         testGameboard.receiveAttack(1, 2,);
         expect(testGameboard.grid[1][2]).toBe("hit");
-    }); 
+    });
+    
+    test('Attack out of boundries', () => {
+        expect(() => {
+            testGameboard.receiveAttack(11, 11);
+        }).toThrow("Attack ouf of boundries");
+    });
 
 });
