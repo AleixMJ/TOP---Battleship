@@ -1,9 +1,11 @@
-import Ship from "./Ship";
+import Ship from "./Ship.js";
 
 class Gameboard {
     constructor() {
         this.grid = Array.from({ length: 10}, () => Array(10).fill(null));
         this.ships = [];
+        this.missedAttacks = [];
+        this.successfulAttacks = [];
     }
 
     placeShip(length,  startY, startX, vertical = true) {
@@ -50,7 +52,7 @@ class Gameboard {
         }
     }
     receiveAttack(row, col) {
-        if (row > 10 || row < 1 || col > 10 || col < 1) {
+        if (row > 9 || row < 0 || col > 9 || col < 0) {
             throw Error("Attack ouf of boundries");
         }
     }
