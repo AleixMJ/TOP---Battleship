@@ -1,4 +1,4 @@
-import Ship from './Ship.js'
+import Ship from '../src/Ship.js'
 
 describe("Ship Mechanics", () => {
 
