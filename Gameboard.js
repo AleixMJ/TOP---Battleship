@@ -55,6 +55,29 @@ class Gameboard {
         if (row > 9 || row < 0 || col > 9 || col < 0) {
             throw Error("Attack ouf of boundries");
         }
+
+        const alreadyMiss = this.missedAttacks.some(coord => {
+            return coord[0] === row && coord[1] === col;
+        });
+
+        const alreadyHit = this.successfulAttacks.some(coord => {
+            return coord[0] === row && coord[1] === col;
+        });
+
+        if (alreadyMiss || alreadyHit) {
+            throw Error("Coordinate has already been targeted")
+        }
+
+        
+        const target = this.grid[row][col];
+
+
+        if (target !== null) {
+            this.successfulAttacks.push([row, col]);
+            target.hit();
+            
+        } else this.missedAttacks.push([row, col]);
+
     }
 
     allShipsSunk() {
