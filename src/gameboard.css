@@ -1,0 +1,25 @@
+.grid-board {
+  display: grid;
+  /* Creates exactly 10 equal columns */
+  grid-template-columns: repeat(10, 1fr); 
+  /* Creates exactly 10 equal rows */
+  grid-template-rows: repeat(10, 1fr); 
+  
+  width: 400px;
+  height: 400px;
+  border: 2px solid #333;
+}
+
+.cell {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  /* Keeps borders from doubling up if you prefer a seamless look */
+  box-sizing: border-box; 
+  transition: background-color 0.2s ease;
+}
+
+/* Quick hover effect to make it feel like a game */
+.cell:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}

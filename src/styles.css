@@ -1,0 +1,6 @@
+#game-wrapper {
+    display: flex;
+    justify-content: center; /* Centers the boards horizontally */
+    gap: 50px;              /* Creates a clean gap between your board and the AI's */
+    margin-top: 30px;
+}
