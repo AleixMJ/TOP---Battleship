@@ -1,0 +1,58 @@
+/* ==========================================================================
+   cellStatus.css - Dynamic Battleship States
+   ========================================================================== */
+
+/* 1. Base Environments (Fog of War default) */
+.cell.water {
+    background-color: #e2e8f0; /* Soft slate gray/blue */
+}
+
+/* Only show healthy ships on the player's own board */
+.player .cell.ship {
+    background-color: #475569; /* Solid iron-clad gray */
+    border-color: #334155;
+}
+
+/* Hide opponent ships by default so they look exactly like empty water! */
+.opponent .cell.ship {
+    background-color: #e2e8f0; 
+}
+
+
+/* 2. Action Modifiers (Attacked States) */
+
+/* Missed Shot: Water that was fired upon */
+.cell.water.miss {
+    background-color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Subtle white peg marker for a miss */
+.cell.water.miss::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+
+/* Successful Hit: Any cell containing a ship that was fired upon */
+.cell.ship.hit {
+    background-color: #ef4444; /* High-visibility Red */
+    border-color: #b91c1c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Red/orange core marker for a confirmed hit */
+.cell.ship.hit::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #f97316;
+    border-radius: 50%;
+}
