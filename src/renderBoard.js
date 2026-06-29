@@ -1,3 +1,5 @@
+//renderBoard.js
+
 function renderBoard(containerId, gameboardInstance) {
 
     console.log(`DEBUG: renderBoard is currently painting cells into: ${containerId}`);
@@ -9,38 +11,32 @@ function renderBoard(containerId, gameboardInstance) {
         for (let col = 0; col < 10; col++) {
             const cell = document.createElement("div");
             cell.classList.add("cell");
-
-            const boardData = gameboardInstance.grid[row][col];
-            cell.classList.add("water");
-
-            if (boardData !== null) { cell.classList.add("ship");}
-           
-
             cell.dataset.row = row;
             cell.dataset.col = col;
 
-            if (containerId === "gameboard-container-opponent") {
-                cell.addEventListener("click", (e) => {
-                    const clickedCell = e.target;
-                    const targetRow = parseInt(e.target.dataset.row);
-                    const targetCol = parseInt(e.target.dataset.col);
+            const matchesCell = coord => coord[0] === row && coord[1] === col;
 
-                    console.log(`Attacking Opponent at: ${targetRow}, ${targetCol}`);
-                    if (gameboardInstance.grid[targetRow][targetCol] === null) {
-                        clickedCell.classList.add("miss");               
-                    } else {
-                        clickedCell.classList.remove("water");
-                        clickedCell.classList.add("hit");
-                    }
-                    
-                });
+            const isHit = gameboardInstance.successfulAttacks.some(matchesCell);
+            const isMiss = gameboardInstance.missedAttacks.some(matchesCell);
+
+            if (gameboardInstance.grid[row][col] !== null) {
+                    cell.classList.add("ship");
+                } else {
+                cell.classList.add("water");
+            }
+
+            if (isHit) {
+                cell.classList.add("hit");       
+            } else if (isMiss) {
+                cell.classList.add("miss");
             }
 
             container.appendChild(cell);
             
         }
-    }
+    
 
+    }
 }
 
 export default renderBoard;
