@@ -1,13 +1,45 @@
+/* Each board's layout zone */
+.gameboard-wrapper {
+    display: grid;
+    /* Column 1 (Numbers): 30px | Column 2 (The Board itself): 350px */
+    grid-template-columns: 30px 350px; 
+    /* Row 1 (Letters): 30px    | Row 2 (The Board itself): 350px */
+    grid-template-rows: 30px 350px;
+    
+    gap: 5px; /* Adds a clean breathing room between headers and cells */
+    margin: 20px;
+}
+
+/* Position the horizontal letters above the board */
+.columnLetters {
+    grid-column: 2 / 3; /* Forces it to stay in the second grid track */
+    grid-row: 1 / 2;    /* Forces it to stay in the first row track */
+    display: flex;
+    justify-content: space-around; /* Evenly spreads A-J horizontally */
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Position the vertical numbers beside the board */
+.rowNumbers {
+    grid-column: 1 / 2; /* Forces it to stay in the first column track */
+    grid-row: 2 / 3;    /* Forces it to stay in the second row track */
+    display: flex;
+    flex-direction: column; /* Stacks 1-10 vertically */
+    justify-content: space-around; /* Evenly spreads them vertically */
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Your original 10x10 cell container */
 .grid-board {
-  display: grid;
-  /* Creates exactly 10 equal columns */
-  grid-template-columns: repeat(10, 1fr); 
-  /* Creates exactly 10 equal rows */
-  grid-template-rows: repeat(10, 1fr); 
-  
-  width: 400px;
-  height: 400px;
-  border: 2px solid #333;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    
+    /* Make sure this matches your template size */
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
 }
 
 .cell {
