@@ -42,9 +42,17 @@ function initGame() {
         const row = parseInt(e.target.dataset.row);
         const col = parseInt(e.target.dataset.col);
 
+        try {
+        player.attackEnemy(opponent.board, row, col);
+        } catch (error) {
+            statusMessage.textContent = "You already shot there! Pick another spot.";
+            return;
+        }
+        
+
         isAiThinking = true;
 
-        player.attackEnemy(opponent.board, row, col);
+        
         renderBoard("gameboard-container-opponent", opponent.board);
         if (opponent.board.allShipsSunk()) {
             statusMessage.textContent = "You win!"
@@ -57,15 +65,15 @@ function initGame() {
         setTimeout(() => {
             opponent.randomAttack(player.board);
             renderBoard("gameboard-container-player", player.board);
-
-
-            statusMessage.textContent = "Your Turn!"
-            isAiThinking = false;
             if (player.board.allShipsSunk()) {
             statusMessage.textContent = "You lose!"
             isGameOver = true;
             return
-        }
+            }
+
+            statusMessage.textContent = "Your Turn!"
+            isAiThinking = false;
+        
         }, 1500);
 
     })
