@@ -4,22 +4,20 @@
 
 /* 1. Base Environments (Fog of War default) */
 .cell.water {
-    background-color: #e2e8f0; /* Soft slate gray/blue */
+    background-color: #e2e8f0; 
 }
 
 /* Only show healthy ships on the player's own board */
 .player .cell.ship {
-    background-color: #475569; /* Solid iron-clad gray */
-    border-color: #334155;
+    background-color: #e2e8f0; /* Changed from #cbd5e1 to match pure water! */
+    border-color: #ddd;        /* Optional: softer border color matching empty cells */
 }
 
-/* Hide opponent ships by default so they look exactly like empty water! */
+/* Hide opponent ships by default */
 .opponent .cell.ship {
     background-color: #e2e8f0; 
 }
 
-
-/* 2. Action Modifiers (Attacked States) */
 
 /* Missed Shot: Water that was fired upon */
 .cell.water.miss {
@@ -27,32 +25,128 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
-/* Subtle white peg marker for a miss */
+/* The permanent splash core */
 .cell.water.miss::after {
     content: "";
-    width: 8px;
-    height: 8px;
-    background-color: #ffffff;
+    width: 6px;
+    height: 6px;
+    background-color: #93c5fd; /* Soft water-blue peg */
     border-radius: 50%;
-    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);
+    z-index: 2;
+}
+
+/* The expanding splash ring */
+.cell.water.miss::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #60a5fa;
+    border-radius: 50%;
+    animation: splashRipple 1.2s infinite ease-out;
+    opacity: 0;
+    z-index: 1;
+}
+
+@keyframes splashRipple {
+    0% {
+        width: 6px;
+        height: 6px;
+        opacity: 1;
+    }
+    100% {
+        width: 28px;
+        height: 28px;
+        opacity: 0;
+        border-width: 1px;
+    }
 }
 
 /* Successful Hit: Any cell containing a ship that was fired upon */
 .cell.ship.hit {
-    background-color: #ef4444; /* High-visibility Red */
-    border-color: #b91c1c;
+    /* Clear the solid red block so we can see the ship hull underneath! */
+    background-color: transparent; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Red/orange core marker for a confirmed hit */
+/* 💥 THE ANIMATED FIRE PEG MARKER */
 .cell.ship.hit::after {
     content: "";
-    width: 10px;
-    height: 10px;
-    background-color: #f97316;
-    border-radius: 50%;
+    width: 14px;
+    height: 18px;
+    /* Create a tear-drop flame shape */
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    
+    /* Fire color gradient: Yellow core to intense Orange/Red outer layer */
+    background: radial-gradient(circle at bottom, #fef08a 20%, #f97316 60%, #ef4444 90%);
+    
+    /* Center it slightly upward like a real flame */
+    margin-top: -4px; 
+    filter: drop-shadow(0 0 4px #ef4444);
+    
+    /* Attach the flicker loop */
+    animation: flicker 0.6s infinite alternate ease-in-out;
+    z-index: 2; /* Ensure it stays on top of the ship sprite */
+}
+
+/* Creative keyframe loop to make the flame dance and scale subtly */
+@keyframes flicker {
+    0% {
+        transform: scale(0.95) rotate(-2deg);
+        filter: drop-shadow(0 0 3px #f97316);
+    }
+    100% {
+        transform: scale(1.05) rotate(2deg);
+        filter: drop-shadow(0 0 6px #ef4444);
+    }
+}
+
+
+/* 3. Structural Slicing Engine */
+
+.grid-board .cell {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    box-sizing: border-box;
+    overflow: hidden; /* Cookie-cutter mask */
+}
+
+/* Target the image specifically inside our grid-board cell */
+.grid-board .cell .board-ship-sprite {
+    position: absolute;
+    height: 35px;
+    top: 0;
+    
+    /* Horizontal defaults: Stretch wide, shift left per segment index */
+    width: calc(var(--slots) * 35px);
+    min-width: calc(var(--slots) * 35px);
+    left: calc(var(--index) * -35px);
+    
+    object-fit: fill;
+    pointer-events: none; 
+    z-index: 1; 
+}
+
+/* 💥 THE FLUSH VERTICAL ROTATION ENGINE */
+.grid-board .cell .board-ship-sprite.vertical {
+    /* 1. Keep the standard horizontal width/height bounds! */
+    width: calc(var(--slots) * 35px);
+    min-width: calc(var(--slots) * 35px);
+    height: 35px;
+    min-height: 35px;
+    
+    /* 2. Pivot the horizontal image 90 degrees around the cell's center */
+    transform: rotate(90deg);
+    transform-origin: 17.5px 17.5px; /* (35px / 2) Centered perfectly */
+    
+    /* 3. Shift the artwork upwards by the segment index so the slice aligns */
+    top: calc(var(--index) * -35px);
+    left: 0;
 }

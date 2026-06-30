@@ -9,7 +9,7 @@ import populateFleetRandomly from "./populateFleetRandomly.js";
 let isAiThinking = false;
 let isGameOver = false;
 
-function initGame() {
+function initGame(fleet) {
     // Reset global engine state flags back to baseline defaults for a new match
     isAiThinking = false;
     isGameOver = false;
@@ -34,8 +34,6 @@ function initGame() {
         </div>
     `;
 
-    const fleet = [5, 4, 3, 3, 2];
-
     // 2. CREATE AND PLACE FLEETS
     // Instantiating fresh player models completely decoupled from any older matches
     const player = new Player();
@@ -46,7 +44,7 @@ function initGame() {
     // 3. RENDER PLAYER LAYOUT
     const playerWrapper = document.querySelector(".gameboard-wrapper.player");
     renderHeaders(playerWrapper);
-    renderBoard("gameboard-container-player", player.board);
+    renderBoard("gameboard-container-player", player.board, fleet);
 
     // 4. RENDER OPPONENT LAYOUT
     const opponentWrapper = document.querySelector(".gameboard-wrapper.opponent");
@@ -92,7 +90,7 @@ function initGame() {
         // Execute asynchronous AI turnaround
         setTimeout(() => {
             opponent.randomAttack(player.board);
-            renderBoard("gameboard-container-player", player.board);
+            renderBoard("gameboard-container-player", player.board, fleet);
             
             // Assess victory criteria for Computer AI
             if (player.board.allShipsSunk()) {

@@ -1,6 +1,6 @@
 // populateFleetRandomly.js 
 
-function populateFleetRandomly(gameboardInstance, fleet) {
+function populateFleetRandomly(playerInstance, fleet) {
 
      for (let ship of fleet) {
 
@@ -12,7 +12,13 @@ function populateFleetRandomly(gameboardInstance, fleet) {
             const alignment = Math.random() > 0.5;
 
             try {
-                gameboardInstance.board.placeShip(ship, randomRow, randomCol, alignment);
+                playerInstance.board.placeShip(
+                    ship.slots,
+                    randomRow,
+                    randomCol,
+                    alignment,
+                    ship.name
+                );
                 placed = true;
             } catch (error) {
                 console.log(`AI placement failed (${error.message}). Retrying...`);

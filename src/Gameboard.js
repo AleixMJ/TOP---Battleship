@@ -10,8 +10,8 @@ class Gameboard {
         this.successfulAttacks = [];
     }
 
-    placeShip(length,  startY, startX, vertical = true) {
-        let ship = new Ship(length);
+    placeShip(length,  startY, startX, vertical = true, name = "Unknown") {
+        let ship = new Ship(length, name);
         if (vertical === true) {
 
             if(startY + ship.length > 10) throw Error("ship out of boundries")
@@ -24,14 +24,16 @@ class Gameboard {
                 scanY++;
             }
 
-            this.grid[startY][startX] = ship;
             this.ships.push(ship);
-            let SquaresOccupied = 1;
-            while (ship.length > SquaresOccupied ) {
-                startY++;
-                this.grid[startY][startX] = ship;
-                SquaresOccupied++;
-            }
+            
+            for (let i = 0; i < ship.length; i++) {
+                    this.grid[startY + i][startX] = {
+                    ship: ship,
+                    name: ship.name,
+                    index: i,
+                    orientation: "vertical"
+                };
+            }          
         } else {
             if(startX + ship.length > 10) throw Error("ship out of boundries")
 
@@ -43,13 +45,14 @@ class Gameboard {
                 scanX++;
             }
 
-            this.grid[startY][startX] = ship;
             this.ships.push(ship);
-            let SquaresOccupied = 1;
-            while (ship.length > SquaresOccupied ) {
-                startX++;
-                this.grid[startY][startX] = ship;
-                SquaresOccupied++;
+            for (let i = 0; i < ship.length; i++) {
+                this.grid[startY][startX + i] = {
+                    ship: ship,
+                    name: ship.name, // 👈 Reads perfectly from the ship instance!
+                    index: i,
+                    orientation: "horizontal"
+                };
             }
         }
     }
@@ -76,7 +79,7 @@ class Gameboard {
 
         if (target !== null) {
             this.successfulAttacks.push([row, col]);
-            target.hit();
+            target.ship.hit();
             
         } else this.missedAttacks.push([row, col]);
 

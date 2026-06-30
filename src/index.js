@@ -7,9 +7,23 @@ import "./setupView.css";
 import initGame from "./initGame.js";
 // import setupGame from "./setupGame.js"; // You will build this next!
 
+import carrierImg from "./assets/carrier.png";
+import battleshipImg from "./assets/battleship.png";
+import destroyerImg from "./assets/destroyer.png";
+import submarineImg from "./assets/submarine.png";
+import cruiserImg from "./assets/cruiser.png";
+
+const FLEET_BLUEPRINTS = [
+    { name: "Carrier",     slots: 5, image: carrierImg,     id: "carrier" },
+    { name: "Battleship",  slots: 4, image: battleshipImg,  id: "battleship" },
+    { name: "Cruiser",     slots: 3, image: cruiserImg,     id: "cruiser" },
+    { name: "Submarine",   slots: 3, image: submarineImg,   id: "submarine" },
+    { name: "Destroyer",   slots: 2, image: destroyerImg,   id: "destroyer" }
+];
+
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Instant action on load
-    initGame();
+    initGame(FLEET_BLUEPRINTS);
 
     // 2. Grab UI Control Elements
     const newGameBtn = document.getElementById("new-game-btn");

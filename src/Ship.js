@@ -1,13 +1,14 @@
 class Ship {
-    constructor(length) {
+    constructor(length, name = "Unknown") {
         this.length = length;
         this.hits = 0;
+        this.name = name;
         this.id = crypto.randomUUID();
     }
     
     hit() {
-        if (this.hits == this.length) {
-            return
+        if (this.hits >= this.length) {
+            return;
         }
         this.hits ++;
     }

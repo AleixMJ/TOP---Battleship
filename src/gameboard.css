@@ -50,8 +50,8 @@
     
     /* Make sure this matches your template size */
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 35px);
+    grid-template-rows: repeat(10, 35px);
 }
 
 .cell {
