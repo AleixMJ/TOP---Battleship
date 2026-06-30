@@ -36,8 +36,10 @@ function initGame() {
         const col = parseInt(e.target.dataset.col);
 
         player.attackEnemy(opponent.board, row, col);
+        opponent.randomAttack(player.board);
 
         renderBoard("gameboard-container-opponent", opponent.board);
+         renderBoard("gameboard-container-player", player.board);
     })
     
 }
