@@ -3,6 +3,7 @@
 import "./styles.css";
 import "./gameboard.css";
 import "./cellStatus.css";
+import "./setupView.css";
 import initGame from "./initGame.js";
 // import setupGame from "./setupGame.js"; // You will build this next!
 

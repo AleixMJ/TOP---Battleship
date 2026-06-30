@@ -20,11 +20,11 @@
     font-size: 1.1rem;
     font-weight: bold;
     color: #fff;
-    background-color: #2ecc71; /* A nice military tactical green! */
+    background-color: #30774f; /* A nice military tactical green! */
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
     transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
