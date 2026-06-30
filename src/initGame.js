@@ -5,6 +5,9 @@ import renderHeaders from "./renderHeaders.js";
 import Player from "./Player.js";
 import populateFleetRandomly from "./populateFleetRandomly.js";
 
+let isAiThinking = false;
+let isGameOver = false;
+
 function initGame() {
 
     const fleet = [5, 4, 3, 3, 2];
@@ -27,19 +30,44 @@ function initGame() {
     renderHeaders(opponentWrapper);
     renderBoard("gameboard-container-opponent", opponent.board);
 
+
+    // 4. Start the game
     const opponentContainer = document.getElementById("gameboard-container-opponent");
+    const statusMessage = document.getElementById("game-status");
 
     opponentContainer.addEventListener("click", (e) => {
         if (!e.target.classList.contains("cell")) return;
+        if (isAiThinking || isGameOver) return;
 
         const row = parseInt(e.target.dataset.row);
         const col = parseInt(e.target.dataset.col);
 
-        player.attackEnemy(opponent.board, row, col);
-        opponent.randomAttack(player.board);
+        isAiThinking = true;
 
+        player.attackEnemy(opponent.board, row, col);
         renderBoard("gameboard-container-opponent", opponent.board);
-         renderBoard("gameboard-container-player", player.board);
+        if (opponent.board.allShipsSunk()) {
+            statusMessage.textContent = "You win!"
+            isGameOver = true;
+            isAiThinking = false;
+            return
+        }
+        statusMessage.textContent = "Enemy fires back..."
+
+        setTimeout(() => {
+            opponent.randomAttack(player.board);
+            renderBoard("gameboard-container-player", player.board);
+
+
+            statusMessage.textContent = "Your Turn!"
+            isAiThinking = false;
+            if (player.board.allShipsSunk()) {
+            statusMessage.textContent = "You lose!"
+            isGameOver = true;
+            return
+        }
+        }, 1500);
+
     })
     
 }
