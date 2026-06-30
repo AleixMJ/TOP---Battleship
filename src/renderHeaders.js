@@ -4,6 +4,9 @@ function renderHeaders(wrapper) {
 const letterContainer = wrapper.querySelector(".columnLetters");
 const numberContainer = wrapper.querySelector(".rowNumbers");
 
+letterContainer.innerHTML = "";
+numberContainer.innerHTML = "";
+
 const ColLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
 for (let i = 0; i < ColLetters.length; i++) {

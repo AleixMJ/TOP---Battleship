@@ -6,25 +6,45 @@
     <title>Aleix BattleShip</title>
 </head>
 <body>
+
+    <header id="game-controls">
+        <button id="new-game-btn">Setup New Game 🛠️</button>
+    </header>
+    <div id="game-container">
     
+
+
     <div id="game-status">Your Turn!</div>
 
-    <div id="game-wrapper">
-        <div class="gameboard-wrapper player">
-            <div class="columnLetters"></div>
-            <div class="rowNumbers"></div>
-            <div id="gameboard-container-player" class="grid-board"></div>
-
+    <div id="battle-view" class="view">
+        <div id="game-wrapper">
+            <div class="gameboard-wrapper player">
+                <div class="columnLetters"></div>
+                <div class="rowNumbers"></div>
+                <div id="gameboard-container-player" class="grid-board"></div>
+            </div>
+            <div class="gameboard-wrapper opponent">
+                <div class="columnLetters"></div>
+                <div class="rowNumbers"></div>
+                <div id="gameboard-container-opponent" class="grid-board"></div>
+            </div>
         </div>
-
-        <div class="gameboard-wrapper opponent">
-            <div class="columnLetters"></div>
-            <div class="rowNumbers"></div>
-            <div id="gameboard-container-opponent" class="grid-board"></div>
-
-        </div>
-
     </div>
+
+    <div id="setup-view" class="view hidden">
+        <h2>Deploy Your Fleet</h2>
+        <p>Drag or click to position your ships on your board!</p>
+        
+        <div class="setup-layout">
+            <div id="setup-board-container"></div>
+            
+            <div id="dockyard"></div> 
+        </div>
+
+        <button id="start-battle-btn">Commence Battle! 🚀</button>
+    </div>
+
+</div>
 
 
 </body>

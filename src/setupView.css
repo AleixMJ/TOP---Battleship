@@ -1,0 +1,37 @@
+#setup-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Centers everything horizontally */
+    justify-content: center;
+    text-align: center;     /* Centers text lines inside paragraphs */
+    margin-top: 30px;       /* Adds breathing room below the master header button */
+}
+
+/* Give the instructions a bit of spacing */
+#setup-view p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* Clean up your commence button to look like a commanding main action */
+#start-battle-btn {
+    margin-top: 30px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2ecc71; /* A nice military tactical green! */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+#start-battle-btn:hover {
+    background-color: #27ae60;
+}
+
+#start-battle-btn:active {
+    transform: scale(0.98); /* Tactile click feedback */
+}
