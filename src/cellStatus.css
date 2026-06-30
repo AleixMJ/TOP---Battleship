@@ -9,8 +9,11 @@
 
 /* Only show healthy ships on the player's own board */
 .player .cell.ship {
-    background-color: #e2e8f0; /* Changed from #cbd5e1 to match pure water! */
-    border-color: #ddd;        /* Optional: softer border color matching empty cells */
+    /* Blend the cell background perfectly with the water base */
+    background-color: #e2e8f0; 
+    
+    /* Make the borders match the background so the white dividing lines completely vanish! */
+    border: none; 
 }
 
 /* Hide opponent ships by default */
@@ -68,8 +71,8 @@
 
 /* Successful Hit: Any cell containing a ship that was fired upon */
 .cell.ship.hit {
-    /* Clear the solid red block so we can see the ship hull underneath! */
     background-color: transparent; 
+    border-color: transparent; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,7 +111,9 @@
 }
 
 
-/* 3. Structural Slicing Engine */
+/* ==========================================================================
+   3. Structural Slicing Engine (Perfected Translation Order)
+   ========================================================================== */
 
 .grid-board .cell {
     position: relative;
@@ -121,32 +126,36 @@
 /* Target the image specifically inside our grid-board cell */
 .grid-board .cell .board-ship-sprite {
     position: absolute;
-    height: 35px;
+    width: 35px;
+    left: 0;
     top: 0;
     
-    /* Horizontal defaults: Stretch wide, shift left per segment index */
-    width: calc(var(--slots) * 35px);
-    min-width: calc(var(--slots) * 35px);
-    left: calc(var(--index) * -35px);
+    /* Establish native vertical sizing constraints */
+    height: calc(var(--slots) * 35px);
+    min-height: calc(var(--slots) * 35px);
+    
+    /* 💥 THE FIXED TRANSFORM PIPELINE:
+       1. Rotate -90deg so the nose points correctly to the left.
+       2. Use translateY AFTER the rotation so the index slides along the correct axis! */
+    transform: rotate(-90deg) translateY(calc(var(--index) * -35px));
+    transform-origin: 17.5px 17.5px; /* Center point pivot */
     
     object-fit: fill;
     pointer-events: none; 
     z-index: 1; 
 }
 
-/* 💥 THE FLUSH VERTICAL ROTATION ENGINE */
+/* Vertical modification state override */
 .grid-board .cell .board-ship-sprite.vertical {
-    /* 1. Keep the standard horizontal width/height bounds! */
-    width: calc(var(--slots) * 35px);
-    min-width: calc(var(--slots) * 35px);
-    height: 35px;
-    min-height: 35px;
+    /* No rotation needed for vertical layout */
+    transform: none;
     
-    /* 2. Pivot the horizontal image 90 degrees around the cell's center */
-    transform: rotate(90deg);
-    transform-origin: 17.5px 17.5px; /* (35px / 2) Centered perfectly */
+    width: 35px;
+    min-width: 35px;
+    height: calc(var(--slots) * 35px);
+    min-height: calc(var(--slots) * 35px);
     
-    /* 3. Shift the artwork upwards by the segment index so the slice aligns */
-    top: calc(var(--index) * -35px);
     left: 0;
+    /* Slide straight up natively */
+    top: calc(var(--index) * -35px);
 }

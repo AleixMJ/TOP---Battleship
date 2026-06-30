@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 100" width="46" height="100">
+  <!-- Hull Outline and Base -->
+  <path d="M 23,4 C 33,15 38,30 38,50 L 38,94 C 38,97 31,98 23,98 C 15,98 8,97 8,94 L 8,50 C 8,30 13,15 23,4 Z" fill="#718096" stroke="#2D3748" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Inner Deck -->
+  <path d="M 23,10 C 30,20 34,32 34,50 L 34,92 C 34,94 29,94 23,94 C 17,94 12,94 12,92 L 12,50 C 12,32 16,20 23,10 Z" fill="#A0AEC0" />
+  <!-- Small Bridge Structure -->
+  <rect x="17" y="45" width="12" height="18" rx="2" fill="#E2E8F0" stroke="#2D3748" stroke-width="2"/>
+  <!-- Front Gun Mount -->
+  <circle cx="23" cy="30" r="4" fill="#2D3748" stroke="#2D3748"/>
+  <line x1="23" y1="28" x2="23" y2="16" stroke="#2D3748" stroke-width="2" />
+</svg>

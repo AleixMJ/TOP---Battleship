@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 150" width="50" height="150">
+  <!-- Hull Outline and Base -->
+  <path d="M 25,4 C 36,18 42,35 42,60 L 42,144 C 42,148 34,148 25,148 C 16,148 8,148 8,144 L 8,60 C 8,35 14,18 25,4 Z" fill="#4A5568" stroke="#1A202C" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Inner Deck (Updated to match naval grey) -->
+  <path d="M 25,12 C 33,24 38,40 38,60 L 38,142 C 38,144 31,144 25,144 C 19,144 12,144 12,142 L 12,60 C 12,40 17,24 25,12 Z" fill="#718096" />
+  <!-- Center Cabin -->
+  <rect x="19" y="65" width="12" height="30" rx="2" fill="#E2E8F0" stroke="#1A202C" stroke-width="2"/>
+  <!-- Front Single Turret -->
+  <circle cx="25" cy="42" r="6" fill="#E2E8F0" stroke="#1A202C" stroke-width="2"/>
+  <line x1="25" y1="38" x2="25" y2="24" stroke="#1A202C" stroke-width="2.5" />
+  <!-- Rear Deck Vent -->
+  <rect x="21" y="115" width="8" height="12" fill="#4A5568" rx="1" stroke="#1A202C" stroke-width="1.5"/>
+</svg>

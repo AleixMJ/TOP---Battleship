@@ -7,11 +7,11 @@ import "./setupView.css";
 import initGame from "./initGame.js";
 // import setupGame from "./setupGame.js"; // You will build this next!
 
-import carrierImg from "./assets/carrier.png";
-import battleshipImg from "./assets/battleship.png";
-import destroyerImg from "./assets/destroyer.png";
-import submarineImg from "./assets/submarine.png";
-import cruiserImg from "./assets/cruiser.png";
+import carrierImg from "./assets/carrier.svg";
+import battleshipImg from "./assets/battleship.svg";
+import destroyerImg from "./assets/destroyer.svg";
+import submarineImg from "./assets/submarine.svg";
+import cruiserImg from "./assets/cruiser.svg";
 
 const FLEET_BLUEPRINTS = [
     { name: "Carrier",     slots: 5, image: carrierImg,     id: "carrier" },
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             battleView.classList.remove("hidden");
             
             // Re-run the game loop initializing with the custom configuration
-            initGame(); 
+            initGame(FLEET_BLUEPRINTS); 
         });
     }
 });

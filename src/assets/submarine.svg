@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 150" width="46" height="150">
+  <!-- Submarine Body -->
+  <rect x="8" y="15" width="30" height="120" rx="15" fill="#2D3748" stroke="#1A202C" stroke-width="3"/>
+  <!-- Bow Details -->
+  <path d="M 15,20 Q 23,8 31,20" fill="none" stroke="#718096" stroke-width="2"/>
+  <!-- Conning Tower / Sail (Center Fin) -->
+  <rect x="17" y="60" width="12" height="30" rx="4" fill="#4A5568" stroke="#1A202C" stroke-width="2"/>
+  <circle cx="23" cy="70" r="2" fill="#E2E8F0" />
+  <!-- Periscope Point -->
+  <line x1="23" y1="60" x2="23" y2="52" stroke="#1A202C" stroke-width="2" />
+  <circle cx="24" cy="52" r="1" fill="#1A202C" />
+  <!-- Tail Fins -->
+  <path d="M 8,125 L 2,130 L 2,135 L 8,132 Z" fill="#2D3748" stroke="#1A202C" stroke-width="2"/>
+  <path d="M 38,125 L 44,130 L 44,135 L 38,132 Z" fill="#2D3748" stroke="#1A202C" stroke-width="2"/>
+</svg>

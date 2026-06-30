@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 200" width="50" height="200">
+  <!-- Hull Outline and Base -->
+  <path d="M 25,4 C 38,18 44,40 44,70 L 44,192 C 44,197 35,198 25,198 C 15,198 6,197 6,192 L 6,70 C 6,40 12,18 25,4 Z" fill="#4A5568" stroke="#1A202C" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Inner Deck -->
+  <path d="M 25,12 C 35,24 40,44 40,70 L 40,190 C 40,193 33,194 25,194 C 17,194 10,193 10,190 L 10,70 C 10,44 15,24 25,12 Z" fill="#718096" />
+  <!-- Superstructure Center Bridge -->
+  <rect x="18" y="85" width="14" height="40" rx="3" fill="#CBD5E0" stroke="#1A202C" stroke-width="2"/>
+  <circle cx="25" cy="105" r="4" fill="#A0AEC0" />
+  <!-- Front Gun Turret -->
+  <path d="M 18,55 L 32,55 L 29,43 L 21,43 Z" fill="#CBD5E0" stroke="#1A202C" stroke-width="2"/>
+  <line x1="23" y1="43" x2="23" y2="28" stroke="#1A202C" stroke-width="3" />
+  <line x1="27" y1="43" x2="27" y2="28" stroke="#1A202C" stroke-width="3" />
+  <!-- Rear Gun Turret -->
+  <path d="M 18,155 L 32,155 L 29,143 L 21,143 Z" fill="#CBD5E0" stroke="#1A202C" stroke-width="2"/>
+  <line x1="23" y1="155" x2="23" y2="170" stroke="#1A202C" stroke-width="3" />
+  <line x1="27" y1="155" x2="27" y2="170" stroke="#1A202C" stroke-width="3" />
+</svg>

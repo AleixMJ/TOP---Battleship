@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 250" width="50" height="250">
+  <!-- Hull Outline and Base -->
+  <path d="M 25,5 C 38,15 45,35 45,60 L 45,240 C 45,246 38,248 25,248 C 12,248 5,246 5,240 L 5,60 C 5,35 12,15 25,5 Z" fill="#718096" stroke="#2D3748" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Flight Deck -->
+  <path d="M 25,12 C 35,22 41,38 41,60 L 41,236 C 41,240 35,242 25,242 C 15,242 9,240 9,236 L 9,60 C 9,38 15,22 25,12 Z" fill="#4A5568" />
+  <!-- Runway Centerline -->
+  <line x1="25" y1="30" x2="25" y2="220" stroke="#ECC94B" stroke-width="2" stroke-dasharray="8 6" />
+  <!-- Command Island (Tower) -->
+  <rect x="33" y="110" width="6" height="35" rx="2" fill="#E2E8F0" stroke="#2D3748" stroke-width="2"/>
+  <rect x="35" y="115" width="4" height="8" fill="#EDF2F7"/>
+  <!-- Deck Markings -->
+  <line x1="13" y1="50" x2="20" y2="50" stroke="#E2E8F0" stroke-width="2" />
+  <line x1="13" y1="210" x2="20" y2="210" stroke="#E2E8F0" stroke-width="2" />
+</svg>

@@ -54,16 +54,16 @@
     grid-template-rows: repeat(10, 35px);
 }
 
+/* Your base 10x10 cell container (Water by default) */
 .cell {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  /* Keeps borders from doubling up if you prefer a seamless look */
+  background-color: #e2e8f0; /* Default soft water blue-gray color */
+  border: 1px solid #cbd5e1; /* Subtle grid borders matching the water vibe */
   box-sizing: border-box; 
   transition: background-color 0.2s ease;
 }
 
-/* Quick hover effect to make it feel like a game */
+/* Hover effect ONLY triggers on un-hit water cells */
 .cell:hover {
-  background-color: #f0f0f0;
+  background-color: #cbd5e1; /* Subtle wave distortion hover effect */
   cursor: pointer;
 }
