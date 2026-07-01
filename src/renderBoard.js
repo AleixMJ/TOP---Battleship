@@ -33,7 +33,7 @@ function renderBoard(containerId, gameboardInstance, fleetBlueprints = null) {
             }
 
             if (cellData !== null && fleetBlueprints) {
-                const blueprint = fleetBlueprints.find(b => b.name === cellData.name);
+                const blueprint = fleetBlueprints.find(b => b.name === cellData.name || b.id === cellData.name);
 
                 if (blueprint) {
                     const imgElement = document.createElement("img");

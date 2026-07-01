@@ -95,6 +95,14 @@ class Gameboard {
         return this.ships.every(ship => ship.isSunk());
     }
 
+    resetBoard() {
+        this.grid = Array.from({ length: 10}, () => Array(10).fill(null));
+        this.ships = [];
+        this.missedAttacks = [];
+        this.successfulAttacks = [];
+        this.shipsInjured = []
+    }
+
 };
 
 export default Gameboard;

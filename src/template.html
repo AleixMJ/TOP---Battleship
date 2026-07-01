@@ -32,27 +32,60 @@
     </div>
 
     <div id="setup-view" class="view hidden">
-        <h2>Deploy Your Fleet</h2>
         <p>Drag or click to position your ships on your board!</p>
         
         <div class="setup-layout">
-            <div id="setup-board-container"></div>
+            <div class="gameboard-wrapper setup">
+                <div class="columnLetters"></div>
+                <div class="rowNumbers"></div>
+                <div id="setup-board" class="grid-board"></div>
+            </div>
             
-            <div id="dockyard"></div> 
+        <div id="dockyard">
+            <div class="dockyard-item">
+                <span class="dockyard-label">Carrier (5)</span>
+                <div class="setup-ship" draggable="true" data-length="5" data-name="carrier"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Battleship (4)</span>
+                <div class="setup-ship" draggable="true" data-length="4" data-name="battleship"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Cruiser (3)</span>
+                <div class="setup-ship" draggable="true" data-length="3" data-name="cruiser"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Submarine (3)</span>
+                <div class="setup-ship" draggable="true" data-length="3" data-name="submarine"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Destroyer (2)</span>
+                <div class="setup-ship" draggable="true" data-length="2" data-name="destroyer"></div>
+            </div>
         </div>
-
-        <div class="difficulty-container">
-            <label class="switch">
-                <input type="checkbox" id="ai-difficulty-toggle" checked>
-                <span class="slider round"></span>
-            </label>
-            <span id="difficulty-label">Smart AI Enabled</span>
         </div>
-
-        <button id="start-battle-btn">Commence Battle! 🚀</button>
+        
+        <div class="setup-controls-row">
+            <button id="rotate-btn">Orientation: HORIZONTAL</button>
+            <button id="random-setup-btn" class="setup-secondary-btn">Randomize Fleet 🎲</button>
+            
+            <button id="clear-board-btn" class="setup-secondary-btn">Clear Board 🧹</button>
+            
+            <div class="difficulty-container">
+                <span>Smart AI Enabled</span>
+                <label class="switch">
+                    <input type="checkbox" id="ai-difficulty-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button id="start-battle-btn">Commence Battle!</button>
+        </div>
     </div>
-
-</div>
 
 
 </body>
