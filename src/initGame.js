@@ -8,6 +8,7 @@ import populateFleetRandomly from "./populateFleetRandomly.js";
 // Global engine flags to track active game loops
 let isAiThinking = false;
 let isGameOver = false;
+let smartAi = true;
 
 function initGame(fleet) {
     // Reset global engine state flags back to baseline defaults for a new match
@@ -89,7 +90,12 @@ function initGame(fleet) {
 
         // Execute asynchronous AI turnaround
         setTimeout(() => {
-            opponent.randomAttack(player.board);
+            if (smartAi) {
+                opponent.smartAttack(player.board);
+            } else {
+                opponent.randomAttack(player.board);
+            }
+            
             renderBoard("gameboard-container-player", player.board, fleet);
             
             // Assess victory criteria for Computer AI

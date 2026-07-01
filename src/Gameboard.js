@@ -8,6 +8,7 @@ class Gameboard {
         this.ships = [];
         this.missedAttacks = [];
         this.successfulAttacks = [];
+        this.shipsInjured = []
     }
 
     placeShip(length,  startY, startX, vertical = true, name = "Unknown") {
@@ -79,8 +80,13 @@ class Gameboard {
 
         if (target !== null) {
             this.successfulAttacks.push([row, col]);
+            this.shipsInjured.push([row, col]);
             target.ship.hit();
-            
+            if (target.ship.isSunk()) {
+                this.shipsInjured = this.shipsInjured.filter(coord => {
+                   return this.grid[coord[0]][coord[1]].ship !== target.ship;
+                });
+            };           
         } else this.missedAttacks.push([row, col]);
 
     }
