@@ -44,7 +44,6 @@
    ========================================================================== */
 #dockyard {
     display: flex;
-    flex-row: row;
     flex-wrap: wrap;         /* Allows elements to wrap into columns naturally */
     gap: 16px;
     padding: 20px;
@@ -63,6 +62,11 @@
     align-items: center;     /* Centers the text label right over the upright ship profiles */
     justify-content: flex-start;
     padding: 4px;
+}
+
+.dockyard-item.hidden-placeholder {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* Minimalist label typography styling above the artwork */
@@ -250,4 +254,9 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
+}
+
+/* Fixes drop accuracy: Forces drag to register on the grid cell, never the ship image */
+.board-ship-sprite {
+    pointer-events: none !important;
 }

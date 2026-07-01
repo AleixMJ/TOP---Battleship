@@ -78,13 +78,20 @@ document.addEventListener("DOMContentLoaded", () => {
             // 1. Instantiate a completely fresh player data profile 
             customPlayerInstance = new Player();
             
-            // 💥 2. DEFENSIVE FIX: Force the data board array to clear out immediately 
+            // 💥 DEFENSIVE FIX 1: Force the data board array to clear out immediately 
             customPlayerInstance.board.resetBoard();
+            
+            // 💥 DEFENSIVE FIX 2: Clear the listener lock out of the DOM!
+            // This forces our drag & drop system to read your brand-new customPlayerInstance
+            const boardContainer = document.getElementById("setup-board");
+            if (boardContainer) {
+                delete boardContainer.dataset.listenersAttached;
+            }
             
             // 3. Re-render the pristine grid template view (wiping old ship sprites out of the DOM)
             renderSetupPhase(customPlayerInstance, FLEET_BLUEPRINTS);
 
-            // 💥 4. RESTORE THE DOCKYARD SHELF: Ensure the sidebar menu is fully populated with draggable units
+            // 4. RESTORE THE DOCKYARD SHELF: Ensure the sidebar menu is fully populated with draggable units
             const dockyard = document.getElementById("dockyard");
             if (dockyard) {
                 dockyard.innerHTML = FLEET_BLUEPRINTS.map(ship => `
