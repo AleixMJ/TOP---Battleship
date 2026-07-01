@@ -43,28 +43,28 @@ class Player {
 
             // TARGET RIGHT
             if (col + 1 < 10 
-                && !enemyBoard.shipsInjured.some(coord => coord[0] === row && coord[1] === col + 1) 
+                && !enemyBoard.successfulAttacks.some(coord => coord[0] === row && coord[1] === col + 1) 
                 && !enemyBoard.missedAttacks.some(coord => coord[0] === row && coord[1] === col + 1)) {
                 this.attackEnemy(enemyBoard, row, col + 1);
                 return;
 
             // TARGET LEFT
             } else if (col - 1 >= 0 
-                && !enemyBoard.shipsInjured.some(coord => coord[0] === row && coord[1] === col - 1)
+                && !enemyBoard.successfulAttacks.some(coord => coord[0] === row && coord[1] === col - 1)
                 && !enemyBoard.missedAttacks.some(coord => coord[0] === row && coord[1] === col - 1)) {
                 this.attackEnemy(enemyBoard, row, col - 1);
                 return;
 
             // TARGET DOWN
             } else if (row + 1 < 10 
-                && !enemyBoard.shipsInjured.some(coord => coord[0] === row + 1 && coord[1] === col)
+                && !enemyBoard.successfulAttacks.some(coord => coord[0] === row + 1 && coord[1] === col)
                 && !enemyBoard.missedAttacks.some(coord => coord[0] === row + 1 && coord[1] === col)) {
                 this.attackEnemy(enemyBoard, row + 1, col);
                 return;
 
             // TARGET UP
             } else if (row - 1 >= 0 
-                && !enemyBoard.shipsInjured.some(coord => coord[0] === row - 1 && coord[1] === col)
+                && !enemyBoard.successfulAttacks.some(coord => coord[0] === row - 1 && coord[1] === col)
                 && !enemyBoard.missedAttacks.some(coord => coord[0] === row - 1 && coord[1] === col)) {
                 this.attackEnemy(enemyBoard, row - 1, col);
                 return;
