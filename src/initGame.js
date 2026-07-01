@@ -15,10 +15,13 @@ function initGame(fleet) {
     isAiThinking = false;
     isGameOver = false;
 
+    const difficultyToggle = document.getElementById("ai-difficulty-toggle");
+    if (difficultyToggle) {
+        smartAi = difficultyToggle.checked; 
+        console.log(`Match started. AI Mode: ${smartAi ? "SMART" : "RANDOM"}`);
+    }
+
     // 1. CLEAR ALL DOM MEMORY & INSTANCES
-    // Overwriting battleView's innerHTML destroys old grid nodes entirely.
-    // Because no active elements link back to previous Player/Gameboard instances,
-    // the browser's Garbage Collector automatically wipes them from RAM.
     const battleView = document.getElementById("battle-view");
     battleView.innerHTML = `
         <div id="game-wrapper">
