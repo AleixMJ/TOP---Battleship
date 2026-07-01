@@ -41,29 +41,48 @@
                 <div id="setup-board" class="grid-board"></div>
             </div>
             
-            <div id="dockyard">
+        <div id="dockyard">
+            <div class="dockyard-item">
+                <span class="dockyard-label">Carrier (5)</span>
                 <div class="setup-ship" draggable="true" data-length="5" data-name="carrier"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Battleship (4)</span>
                 <div class="setup-ship" draggable="true" data-length="4" data-name="battleship"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Cruiser (3)</span>
                 <div class="setup-ship" draggable="true" data-length="3" data-name="cruiser"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Submarine (3)</span>
                 <div class="setup-ship" draggable="true" data-length="3" data-name="submarine"></div>
+            </div>
+            
+            <div class="dockyard-item">
+                <span class="dockyard-label">Destroyer (2)</span>
                 <div class="setup-ship" draggable="true" data-length="2" data-name="destroyer"></div>
-        </div> 
-    
-
-        <button id="rotate-btn">Rotate Ships</button>
-
-        <div class="difficulty-container">
-            <label class="switch">
-                <input type="checkbox" id="ai-difficulty-toggle" checked>
-                <span class="slider round"></span>
-            </label>
-            <span id="difficulty-label">Smart AI Enabled</span>
+            </div>
+        </div>
         </div>
         
-        <button id="start-battle-btn">Commence Battle!</button>         
+        <div class="setup-controls-row">
+            <button id="rotate-btn">Rotate Ships</button>
+            
+            <div class="difficulty-container">
+                <span>Smart AI Enabled</span>
+                <label class="switch">
+                    <input type="checkbox" id="ai-difficulty-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button id="start-battle-btn">Commence Battle!</button>
+        </div>
     </div>
-
-</div>
 
 
 </body>

@@ -1,32 +1,156 @@
-/* setupView.css*/
+/* ==========================================================================
+   setupView.css - Complete Fleet Deployment Layout
+   ========================================================================== */
 
 #setup-view {
     display: flex;
     flex-direction: column;
     align-items: center;    /* Centers everything horizontally */
     justify-content: center;
-    text-align: center;     /* Centers text lines inside paragraphs */
-    margin-top: 30px;       /* Adds breathing room below the master header button */
+    margin-top: 30px;       
+    width: 100%;
 }
 
-/* Give the instructions a bit of spacing */
+/* Setup View Header / Instructions Description */
 #setup-view p {
-    margin-bottom: 20px;
-    color: #666;
+    margin-bottom: 25px;
+    color: #64748b;
+    font-family: sans-serif;
 }
 
-/* Clean up your commence button to look like a commanding main action */
+/* ==========================================================================
+   THE SETUP PHASE INTERACTIVE WORKSPACE
+   ========================================================================== */
+.setup-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;     /* Centers the dockyard vertically relative to the grid */
+    justify-content: center; /* Centers the pair horizontally on the screen */
+    margin: 20px auto 40px auto; 
+    width: 100%;
+}
+
+/* The 10x10 placement board container (Synced perfectly with gameboard.css 35px tracks) */
+#setup-board {
+    display: grid;
+    grid-template-columns: repeat(10, 35px);
+    grid-template-rows: repeat(10, 35px);
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+/* ==========================================================================
+   THE DOCKYARD SIDEBAR & SHIPS (With clean text headers)
+   ========================================================================== */
+#dockyard {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background-color: #f1f5f9;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    min-width: 240px;
+}
+
+/* Parental rows holding the title label + ship element combo */
+.dockyard-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+}
+
+/* Minimalist label typography styling above the artwork */
+.dockyard-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #475569; /* Sleek readable charcoal slate gray */
+}
+
+/* Base ship blocks styles scaled down to fit 35px rows */
+.setup-ship {
+    height: 35px; /* Matches cell height perfectly */
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    background-color: #cbd5e1; /* Smooth military hull grey backing */
+    overflow: hidden;
+    cursor: grab;
+    border-radius: 6px;
+}
+
+.setup-ship:active {
+    cursor: grabbing;
+}
+
+/* Explicit scaling widths based on grid cell units (1 unit = 35px) */
+.setup-ship[data-length="5"] { width: calc(5 * 35px); } /* Carrier (175px) */
+.setup-ship[data-length="4"] { width: calc(4 * 35px); } /* Battleship (140px) */
+.setup-ship[data-length="3"][data-name="cruiser"] { width: calc(3 * 35px); } /* Cruiser (105px) */
+.setup-ship[data-length="3"][data-name="submarine"] { width: calc(3 * 35px); } /* Submarine (105px) */
+.setup-ship[data-length="2"] { width: calc(2 * 35px); } /* Destroyer (70px) */
+
+/* THE DOCKYARD SPRITE ROTATION ENGINE TRICK 
+   Forces your vertical source SVGs to render flat horizontally */
+.setup-ship .dockyard-ship-sprite {
+    position: absolute;
+    width: 35px;
+    height: calc(var(--slots) * 35px); /* Scales perfectly with ship length template */
+    
+    /* Center point pivot coordinates */
+    left: 0;
+    top: 0;
+    transform-origin: 17.5px 17.5px;
+    
+    transform: rotate(-90deg);
+    object-fit: fill;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   CENTERED CONTROLS DASHBOARD ROW (Directly underneath workspace)
+   ========================================================================== */
+.setup-controls-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;              /* Breathing room between buttons/toggles */
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Orientation Swap Toggle Button */
+#rotate-btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: background 0.2s;
+}
+
+#rotate-btn:hover {
+    background-color: #f8fafc;
+}
+
+/* Main Tactical Combat Launch Button */
 #start-battle-btn {
-    margin-top: 30px;
-    padding: 12px 24px;
+    padding: 12px 28px;
     font-size: 1.1rem;
     font-weight: bold;
     color: #fff;
-    background-color: #30774f; /* A nice military tactical green! */
+    background-color: #30774f; /* Commanding military tactical green! */
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
     transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
@@ -35,18 +159,20 @@
 }
 
 #start-battle-btn:active {
-    transform: scale(0.98); /* Tactile click feedback */
+    transform: scale(0.98); /* Tactile press feedback */
 }
 
+/* Smart AI Engine Difficulty Selector */
 .difficulty-container {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 15px 0;
     font-family: sans-serif;
+    font-weight: 600;
+    color: #475569;
 }
 
-/* The switch - the box around the slider */
+/* --- Toggle Switch Mechanics Container --- */
 .switch {
     position: relative;
     display: inline-block;
@@ -54,14 +180,14 @@
     height: 24px;
 }
 
-/* Hide default HTML checkbox */
+/* Hide default HTML native checkbox */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
+/* The underlying track bar */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -71,6 +197,7 @@
     border-radius: 24px;
 }
 
+/* The rolling circular toggle peg node */
 .slider:before {
     position: absolute;
     content: "";
@@ -84,7 +211,7 @@
 }
 
 input:checked + .slider {
-    background-color: #2196F3; /* Bright blue when active */
+    background-color: #2196F3; /* Modern active radar blue */
 }
 
 input:checked + .slider:before {
