@@ -6,9 +6,13 @@ import Player from "./Player.js";
 import populateFleetRandomly from "./populateFleetRandomly.js";
 
 // Global engine flags to track active game loops
+
+const statusMessage = document.getElementById("game-status");
+
 let isAiThinking = false;
 let isGameOver = false;
 let smartAi = true;
+
 
 function initGame(fleet) {
     // Reset global engine state flags back to baseline defaults for a new match
@@ -57,8 +61,7 @@ function initGame(fleet) {
 
     // 5. INITIALIZE BATTLE INTERFACE METRICS
     const opponentContainer = document.getElementById("gameboard-container-opponent");
-    const statusMessage = document.getElementById("game-status");
-    statusMessage.textContent = "Your Turn!"; // Ensure message resets visually on new launch
+
 
     // 6. SINGLE ISOLATED GAME LOOP LISTENER
     opponentContainer.addEventListener("click", (e) => {

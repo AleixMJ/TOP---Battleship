@@ -21,6 +21,9 @@ const FLEET_BLUEPRINTS = [
     { name: "Destroyer",   slots: 2, image: destroyerImg,   id: "destroyer" }
 ];
 
+const statusMessage = document.getElementById("game-status");
+    statusMessage.textContent = "Your Turn!";
+
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Instant action on load
     initGame(FLEET_BLUEPRINTS);
@@ -35,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (newGameBtn) {
         newGameBtn.addEventListener("click", () => {            
             battleView.classList.add("hidden");
-            setupView.classList.remove("hidden");            
+            setupView.classList.remove("hidden");
+            statusMessage.textContent = "Deploy your Fleet";          
         });
     }
 
@@ -44,9 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
         startBattleBtn.addEventListener("click", () => {
             setupView.classList.add("hidden");
             battleView.classList.remove("hidden");
+            statusMessage.textContent = "Your Turn!"  
             
-            // Re-run the game loop initializing with the custom configuration
-            initGame(FLEET_BLUEPRINTS); 
         });
     }
 });
