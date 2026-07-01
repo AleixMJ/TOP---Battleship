@@ -5,17 +5,14 @@ import renderHeaders from "./renderHeaders.js";
 import Player from "./Player.js";
 import populateFleetRandomly from "./populateFleetRandomly.js";
 
-// Global engine flags to track active game loops
-
 const statusMessage = document.getElementById("game-status");
 
 let isAiThinking = false;
 let isGameOver = false;
 let smartAi = true;
 
-
-function initGame(fleet) {
-    // Reset global engine state flags back to baseline defaults for a new match
+// humanPlayer is optional now! If it's missing, we random-allocate automatically.
+function initGame(fleet, humanPlayer = null) {
     isAiThinking = false;
     isGameOver = false;
 
@@ -42,17 +39,23 @@ function initGame(fleet) {
         </div>
     `;
 
-    // 2. CREATE AND PLACE FLEETS
-    // Instantiating fresh player models completely decoupled from any older matches
-    const player = new Player();
-    populateFleetRandomly(player, fleet);    
+    // 2. DEFINE THE ACTIVE HUMAN PLAYER
+    let activePlayer;
+    if (humanPlayer) {
+        activePlayer = humanPlayer; // Use custom dragged layout
+    } else {
+        activePlayer = new Player(); // Start completely fresh
+        populateFleetRandomly(activePlayer, fleet); // Instant random assignment!
+    }
+
+    // Setup the AI Opponent
     const opponent = new Player(false);
     populateFleetRandomly(opponent, fleet);
 
     // 3. RENDER PLAYER LAYOUT
     const playerWrapper = document.querySelector(".gameboard-wrapper.player");
     renderHeaders(playerWrapper);
-    renderBoard("gameboard-container-player", player.board, fleet);
+    renderBoard("gameboard-container-player", activePlayer.board, fleet);
 
     // 4. RENDER OPPONENT LAYOUT
     const opponentWrapper = document.querySelector(".gameboard-wrapper.opponent");
@@ -62,12 +65,9 @@ function initGame(fleet) {
     // 5. INITIALIZE BATTLE INTERFACE METRICS
     const opponentContainer = document.getElementById("gameboard-container-opponent");
 
-
     // 6. SINGLE ISOLATED GAME LOOP LISTENER
     opponentContainer.addEventListener("click", (e) => {
-        // Guard clause: Only intercept targeting actions made directly on grid cells
         if (!e.target.classList.contains("cell")) return;
-        // Guard clause: Stop inputs if match is over or awaiting AI action response
         if (isAiThinking || isGameOver) return;
 
         const row = parseInt(e.target.dataset.row);
@@ -75,7 +75,7 @@ function initGame(fleet) {
 
         // Process Human Move
         try {
-            player.attackEnemy(opponent.board, row, col);
+            activePlayer.attackEnemy(opponent.board, row, col);
         } catch (error) {
             statusMessage.textContent = "You already shot there! Pick another spot.";
             return;
@@ -97,15 +97,16 @@ function initGame(fleet) {
         // Execute asynchronous AI turnaround
         setTimeout(() => {
             if (smartAi) {
-                opponent.smartAttack(player.board);
+                opponent.smartAttack(activePlayer.board);
             } else {
-                opponent.randomAttack(player.board);
+                opponent.randomAttack(activePlayer.board);
             }
             
-            renderBoard("gameboard-container-player", player.board, fleet);
+            // Fixed container target string name to match player view layout box
+            renderBoard("gameboard-container-player", activePlayer.board, fleet);
             
             // Assess victory criteria for Computer AI
-            if (player.board.allShipsSunk()) {
+            if (activePlayer.board.allShipsSunk()) {
                 statusMessage.textContent = "You lose!";
                 isGameOver = true;
                 return;
@@ -118,4 +119,5 @@ function initGame(fleet) {
     });
 }
 
+// Clean Default Export
 export default initGame;
